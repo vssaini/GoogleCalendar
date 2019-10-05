@@ -83,16 +83,15 @@ namespace ZenegyCalendar.GCalendarService
         {
             var calendarListRequest = new CalendarListResource.ListRequest(service);
             var calendars = calendarListRequest.Execute();
-            var result = calendars.Items.First(i => i.AccessRole == "owner" || i.AccessRole == "writer").Id;
-            return result;
+            return calendars.Items.First(i => i.AccessRole == "owner" || i.AccessRole == "writer").Id;
         }
 
         private static Event GetCalendarEvent()
         {
             var result = new Event
             {
-                Summary = "Test Calendar Event Summary 2",
-                Description = "Test Calendar Event Description 2",
+                Summary = "Test Calendar Event Summary 21",
+                Description = "Test Calendar Event Description 21",
                 Sequence = 1
             };
             var eventDate = new EventDateTime
@@ -107,7 +106,8 @@ namespace ZenegyCalendar.GCalendarService
         private static void SyncCalendarEventToCalendar(CalendarService service, Event calendarEvent, string calendarId)
         {
             var eventRequest = new EventsResource.InsertRequest(service, calendarEvent, calendarId);
-            eventRequest.Execute();
+           var response= eventRequest.Execute();
+            var x = response.Id;
         }
     }
 }

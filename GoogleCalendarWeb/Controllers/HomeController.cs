@@ -24,11 +24,12 @@ namespace ZenegyCalendar.Controllers
             {
                 var success = GoogleCalendarSyncer.SyncToGoogleCalendar(this);
                 if (!success)
-                {
+                {                   
                     return Json("Token was revoked. Try again.");
                 }
             }
             return Redirect("~/");
-        }       
+        }  
+        
     }
 }

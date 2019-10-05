@@ -83,11 +83,6 @@ namespace ZenegyCalendar.GCalendarService
                 var task = context.SaveChangesAsync();
                 task.Wait();
             }
-        }
-
-        //private static string GenerateStoredKey(string key, Type t)
-        //{
-        //    return string.Format("{0}-{1}", t.FullName, key);
-        //}
+        }      
     }
 }

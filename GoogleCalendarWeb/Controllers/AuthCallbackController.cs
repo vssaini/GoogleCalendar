@@ -11,26 +11,21 @@ using ZenegyCalendar.GCalendarService;
 namespace ZenegyCalendar.Controllers
 {
     public class AuthCallbackController : Google.Apis.Auth.OAuth2.Mvc.Controllers.AuthCallbackController
-    {       
+    {
 
         private FlowMetadata _flowMetaData { get; }
         protected override FlowMetadata FlowData
         {
             get { return _flowMetaData; }
-        }        
+        }
 
         public AuthCallbackController()
-        { 
+        {
             var dataStore = new EFDataStore();
             var clientID = WebConfigurationManager.AppSettings["GoogleClientID"];
             var clientSecret = WebConfigurationManager.AppSettings["GoogleClientSecret"];
             _flowMetaData = new GoogleAppFlowMetaData(dataStore, clientID, clientSecret);
-        }
-
-        public AuthCallbackController(FlowMetadata flow)
-        {
-            _flowMetaData = flow;
-        }
+        }        
 
         public override async Task<ActionResult> IndexAsync(AuthorizationCodeResponseUrl authorizationCode, CancellationToken taskCancellationToken)
         {
