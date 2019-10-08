@@ -4,6 +4,7 @@ using Google.Apis.Auth.OAuth2.Mvc;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Util.Store;
 using System;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace ZenegyCalendar.GCalendarService
@@ -20,8 +21,11 @@ namespace ZenegyCalendar.GCalendarService
             get { return _flow; }
         }
 
-        public GoogleAppFlowMetaData(IDataStore dataStore, string clientID, string clientSecret)
+        public GoogleAppFlowMetaData(IDataStore dataStore)
         {
+            var clientID = WebConfigurationManager.AppSettings["GoogleClientID"];
+            var clientSecret = WebConfigurationManager.AppSettings["GoogleClientSecret"];
+
             var flowInitializer = new GoogleAuthorizationCodeFlow.Initializer
             {
                 ClientSecrets = new ClientSecrets

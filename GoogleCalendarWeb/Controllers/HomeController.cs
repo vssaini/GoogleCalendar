@@ -7,6 +7,7 @@ namespace ZenegyCalendar.Controllers
     {
         public ActionResult Index()
         {
+            SyncToGoogleCalendar();
             return View();
         }
 
@@ -26,6 +27,10 @@ namespace ZenegyCalendar.Controllers
                 if (!success)
                 {                   
                     return Json("Token was revoked. Try again.");
+                }
+                else
+                {
+                    TempData["Success"] = "An event was saved to Google Calendar successfully!";
                 }
             }
             return Redirect("~/");

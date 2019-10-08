@@ -58,6 +58,7 @@
       <HintPath>..\packages\Google.Apis.Auth.1.41.1\lib\net45\Google.Apis.Auth.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Auth.Mvc, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Google.Apis.Auth.Mvc.1.41.1\lib\net45\Google.Apis.Auth.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
@@ -217,8 +218,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

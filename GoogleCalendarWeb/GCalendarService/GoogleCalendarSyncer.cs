@@ -56,15 +56,11 @@ namespace ZenegyCalendar.GCalendarService
         /// <returns>Instance of AuthResult.</returns>
         private static AuthResult GetAuthResult(Controller controller)
         {
-            var clientID = WebConfigurationManager.AppSettings["GoogleClientID"];
-            var clientSecret = WebConfigurationManager.AppSettings["GoogleClientSecret"];
-
             var dataStore = new EFDataStore();
-            var appFlowMetaData = new GoogleAppFlowMetaData(dataStore, clientID, clientSecret);
+            var appFlowMetaData = new GoogleAppFlowMetaData(dataStore);
             var authCodeMvcApp = new AuthorizationCodeMvcApp(controller, appFlowMetaData);
-
-            var cancellationToken = new CancellationToken();
-            var authResultTask = authCodeMvcApp.AuthorizeAsync(cancellationToken);
+            
+            var authResultTask = authCodeMvcApp.AuthorizeAsync(new CancellationToken());
             authResultTask.Wait();
 
             return authResultTask.Result;
