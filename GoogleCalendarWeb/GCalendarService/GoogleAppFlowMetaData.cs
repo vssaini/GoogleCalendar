@@ -16,21 +16,18 @@ namespace ZenegyCalendar.GCalendarService
     {
         private IAuthorizationCodeFlow _flow { get; }
 
-        public override IAuthorizationCodeFlow Flow
-        {
-            get { return _flow; }
-        }
+        public override IAuthorizationCodeFlow Flow => _flow;
 
         public GoogleAppFlowMetaData(IDataStore dataStore)
         {
-            var clientID = WebConfigurationManager.AppSettings["GoogleClientID"];
+            var clientId = WebConfigurationManager.AppSettings["GoogleClientID"];
             var clientSecret = WebConfigurationManager.AppSettings["GoogleClientSecret"];
 
             var flowInitializer = new GoogleAuthorizationCodeFlow.Initializer
             {
                 ClientSecrets = new ClientSecrets
                 {
-                    ClientId = clientID,
+                    ClientId = clientId,
                     ClientSecret = clientSecret
                 },
                 Scopes = new[] { CalendarService.Scope.Calendar },
@@ -61,12 +58,6 @@ namespace ZenegyCalendar.GCalendarService
                        
         }
 
-        public override string AuthCallback
-        {
-            get
-            {
-                return "/AuthCallback/IndexAsync";
-            }
-        }
+        public override string AuthCallback => "/AuthCallback/IndexAsync";
     }    
 }

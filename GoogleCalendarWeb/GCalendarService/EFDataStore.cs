@@ -20,7 +20,7 @@ namespace ZenegyCalendar.GCalendarService
             using (var context = new ApplicationDbContext())
             {
                 var objectContext = ((IObjectContextAdapter)context).ObjectContext;
-                await objectContext.ExecuteStoreCommandAsync("TRUNCATE TABLE [GoogleAuthItems]");
+                await objectContext.ExecuteStoreCommandAsync("TRUNCATE TABLE [GoogleAuthItems]").ConfigureAwait(false);
             }
         }
 
@@ -37,7 +37,7 @@ namespace ZenegyCalendar.GCalendarService
                 if (item != null)
                 {
                     context.GoogleAuthItems.Remove(item);
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
         }
@@ -67,21 +67,19 @@ namespace ZenegyCalendar.GCalendarService
             using (var context = new ApplicationDbContext())
             {
                 string json = JsonConvert.SerializeObject(value);
-                var item = context.GoogleAuthItems.FirstOrDefaultAsync(x => x.Key == key);
-                item.Wait();
+                var item = await context.GoogleAuthItems.FirstOrDefaultAsync(x => x.Key == key).ConfigureAwait(false);
 
-                if (item.Result == null)
+                if ( item == null)
                 {
                     context.GoogleAuthItems.Add(new GoogleAuthItem { Key = key, Value = json });
                 }
                 else
                 {
-                    item.Result.Value = json;
+                    item.Value = json;
                 }
 
 
-                var task = context.SaveChangesAsync();
-                task.Wait();
+                await context.SaveChangesAsync().ConfigureAwait(false);
 
                 // When tried using the below code line, we get error as
                 // This request has been blocked because sensitive information could be disclosed to third party web sites when this is used in a GET request. To allow GET requests, set JsonRequestBehavior to AllowGet.

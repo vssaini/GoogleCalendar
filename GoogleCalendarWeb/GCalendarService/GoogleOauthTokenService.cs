@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ZenegyCalendar.GCalendarService
+﻿namespace ZenegyCalendar.GCalendarService
 {
     /// <summary>
     /// The GoogleOauthTokenService.cs will be used for token storage for this demo.

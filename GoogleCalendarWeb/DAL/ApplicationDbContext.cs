@@ -3,7 +3,7 @@ using ZenegyCalendar.DAL;
 
 namespace ZenegyCalendar.Infrastructure
 {
-    class ApplicationDbContext : DbContext
+    internal class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext() : base("DefaultConnection")
         {
